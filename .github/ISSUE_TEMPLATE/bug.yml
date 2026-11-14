@@ -1,0 +1,97 @@
+name: Bug
+description: Something in LF Studios does the wrong thing (in the app, or through an agent tool).
+title: "Bug: "
+labels: ["needs-triage", "type:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Search the [open issues](https://github.com/brightlifecreations-projects/LF-Studios-Releases/issues) first; if it's already there, comment on that issue instead. In LF Studios, Help ▸ Report a Bug… fills this in for you.
+        Write the first two boxes in plain words, for anyone. The third box is for the fixer: exact steps, tool calls and results.
+        **Don't attach client media or personal files.** Reproduce in a test project with neutral media if you can.
+  - type: textarea
+    id: what
+    attributes:
+      label: What went wrong
+      description: Plain words. What did you do, what happened, and why it matters.
+      placeholder: "I added a clip to the timeline and it plays with no sound until I reopen the project."
+    validations:
+      required: true
+  - type: textarea
+    id: want
+    attributes:
+      label: What we want
+      description: What should happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: fixer
+    attributes:
+      label: "For the fixer: steps, calls and results"
+      description: |
+        Numbered steps to reproduce. For agent tools, quote each call and its result exactly (JSON).
+        Then **Expected:**, **Actual:**, and if you have one, **Suggested fix:** and **Workaround today:**.
+      placeholder: |
+        1. New project from a 9:16 recording.
+        2. `place_media {"path":"…/clip-02.mp4","where":"main","time":5.15}` → `{"description":"Add Recording","ok":true}`
+        3. Play from 0:05.
+        **Expected:** the clip plays with its sound.
+        **Actual:** silent; the Audio row shows a flat line.
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - BUG
+        - MISSING
+        - DOCS
+        - INFRA
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: "High: blocks the job. Medium: a workaround exists but costs time. Low: annoying."
+      options:
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: LF Studios ▸ About LF Studios.
+      placeholder: "1.23.0"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS
+      placeholder: "macOS 26.1, MacBook Pro M3"
+  - type: input
+    id: found
+    attributes:
+      label: Found
+      description: Date, and the kind of project (no client names).
+      placeholder: "2026-11-14, a 9:16 ad made of 13 clips"
+  - type: dropdown
+    id: by
+    attributes:
+      label: Found by
+      options:
+        - A person using the app
+        - An AI agent (MCP)
+        - The in-app Assistant
+        - The app (crash or automatic report)
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots or recordings
+      description: Drag images or a short screen recording here. Hide anything private.
